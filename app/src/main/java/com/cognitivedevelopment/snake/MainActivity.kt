@@ -48,8 +48,59 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-data class State(val food: Pair<Int, Int>, val snake: List<Pair<Int, Int>>)
-data class Form(val form: List<Pair<Int, Int>>)
+data class State(val food: Pair<Int, Int>, val snake: List<Pair<Int, Int>>,)
+data class Sign (val x:Int, val y:Int)
+
+
+    val locationModels: List<Sign>
+        get() = listOf(
+            Sign(3,6),
+            Sign(3,7),
+            Sign(3,8),
+            Sign(3,9),
+            Sign(3,10),
+            Sign(4,6),
+            Sign(4,7),
+            Sign(4,8),
+            Sign(4,9),
+            Sign(4,5),
+            Sign(5,6),
+            Sign(5,7),
+            Sign(5,8),
+            Sign(5,4),
+            Sign(5,5),
+
+            Sign(7,3),
+            Sign(7,4),
+            Sign(7,5),
+            Sign(7,6),
+            Sign(7,7),
+            Sign(7,8),
+            Sign(3,6),
+            Sign(3,6),
+            Sign(3,6),
+            Sign(3,6),
+            Sign(3,6),
+            Sign(3,6),
+            Sign(3,6),
+            Sign(3,6),
+            Sign(3,6),
+            Sign(3,6),
+            Sign(3,6),Sign(3,6),
+
+            Sign(3,6),
+            Sign(3,6),Sign(3,6),Sign(3,6),Sign(3,6),
+
+
+
+
+
+
+
+
+        )
+
+
 class Game(private val scope: CoroutineScope) {
 
     private val mutex = Mutex()
@@ -107,13 +158,15 @@ class Game(private val scope: CoroutineScope) {
     }
 }
 
+
 @Composable
 fun Snake(game: Game) {
     val state = game.state.collectAsState(initial = null)
 
+
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         state.value?.let {
-            Board(it)
+            Board(it, locationModels)
         }
         Buttons {
             game.move = it
@@ -145,7 +198,7 @@ fun Buttons(onDirectionChange: (Pair<Int, Int>) -> Unit) {
 }
 
 @Composable
-fun Board(state: State) {
+fun Board(state: State,sign: List<Sign>) {
     BoxWithConstraints(Modifier.padding(16.dp)) {
         val tileSize = maxWidth / Game.BOARD_SIZE
 
