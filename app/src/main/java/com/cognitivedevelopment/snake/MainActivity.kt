@@ -76,27 +76,48 @@ data class Sign (val x:Int, val y:Int)
             Sign(7,6),
             Sign(7,7),
             Sign(7,8),
-            Sign(3,6),
-            Sign(3,6),
-            Sign(3,6),
-            Sign(3,6),
-            Sign(3,6),
-            Sign(3,6),
-            Sign(3,6),
-            Sign(3,6),
-            Sign(3,6),
-            Sign(3,6),
-            Sign(3,6),Sign(3,6),
+            Sign(8,2),
+            Sign(8,3),
+            Sign(8,4),
+            Sign(8,5),
+            Sign(8,6),
+            Sign(8,7),
+            Sign(8,8),
+            Sign(9,3),
+            Sign(9,4),
+            Sign(9,5),
+            Sign(9,6),
+            Sign(9,7),
+            Sign(9,8),
 
-            Sign(3,6),
-            Sign(3,6),Sign(3,6),Sign(3,6),Sign(3,6),
+            Sign(13,6),
+            Sign(13,7),
+            Sign(13,8),
+            Sign(13,9),
+            Sign(13,10),
+            Sign(12,6),
+            Sign(12,7),
+            Sign(12,8),
+            Sign(12,9),
+            Sign(12,5),
+            Sign(11,6),
+            Sign(11,7),
+            Sign(11,8),
+            Sign(11,4),
+            Sign(11,5),
 
-
-
-
-
-
-
+            Sign(6,12),
+            Sign(7,12),
+            Sign(7,13),
+            Sign(8,12),
+            Sign(8,13),
+            Sign(8,14),
+            Sign(9,12),
+            Sign(9,13),
+            Sign(10,12),
+            Sign(6,10),
+            Sign(8,10),
+            Sign(10,10),
 
         )
 
@@ -216,14 +237,17 @@ fun Board(state: State,sign: List<Sign>) {
                     DarkGreen, CircleShape
                 )
         )
-        Box(
-            Modifier
-                .offset(x = 1.dp, y = 0.dp)
-                .size(tileSize)
-                .background(
-                    Color.Red, Shapes.small
-                )
-        )
+        sign.forEach {
+            Box(
+                Modifier
+                    .offset(x = it.x.dp, y = it.y.dp)
+                    .size(tileSize)
+                    .background(
+                        Color.Red, Shapes.small
+                    )
+            )
+        }
+
 
 
         state.snake.forEach {
