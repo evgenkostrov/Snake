@@ -175,7 +175,7 @@ class Game(private val scope: CoroutineScope) {
     }
 
     companion object {
-        const val BOARD_SIZE = 16
+        const val BOARD_SIZE = 17
     }
 }
 
@@ -240,7 +240,7 @@ fun Board(state: State,sign: List<Sign>) {
         sign.forEach {
             Box(
                 Modifier
-                    .offset(x = it.x.dp, y = it.y.dp)
+                    .offset(x = tileSize*it.x, y = tileSize*it.y)
                     .size(tileSize)
                     .background(
                         Color.Red, Shapes.small

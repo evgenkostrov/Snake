@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.cognitivedevelopment.snake"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.cognitivedevelopment.snake"
