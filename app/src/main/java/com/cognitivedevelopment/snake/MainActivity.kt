@@ -1,5 +1,6 @@
 package com.cognitivedevelopment.snake
 
+import android.graphics.drawable.VectorDrawable
 import android.os.Bundle
 import android.view.Surface
 import androidx.activity.ComponentActivity
@@ -18,7 +19,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
 import com.cognitivedevelopment.snake.ui.theme.DarkGreen
@@ -201,19 +205,19 @@ fun Buttons(onDirectionChange: (Pair<Int, Int>) -> Unit) {
     val buttonSize = Modifier.size(64.dp)
     Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(24.dp)) {
         Button(onClick = { onDirectionChange(Pair(0, -1)) }, modifier = buttonSize) {
-            Icon(Icons.Default.KeyboardArrowUp, null)
+            Icon(painterResource(R.drawable.`var`), null)
         }
         Row {
             Button(onClick = { onDirectionChange(Pair(-1, 0)) }, modifier = buttonSize) {
-                Icon(Icons.Default.KeyboardArrowLeft, null)
+                Icon(painterResource(R.drawable.`var`), null, modifier = Modifier.rotate(270f))
             }
             Spacer(modifier = buttonSize)
             Button(onClick = { onDirectionChange(Pair(1, 0)) }, modifier = buttonSize) {
-                Icon(Icons.Default.KeyboardArrowRight, null)
+                Icon(painterResource(R.drawable.`var`), null, modifier = Modifier.rotate(90f))
             }
         }
         Button(onClick = { onDirectionChange(Pair(0, 1)) }, modifier = buttonSize) {
-            Icon(Icons.Default.KeyboardArrowDown, null)
+            Icon(painterResource(R.drawable.`var`), null, modifier = Modifier.rotate(180f))
         }
     }
 }
@@ -228,6 +232,16 @@ fun Board(state: State,sign: List<Sign>) {
                 .size(maxWidth)
                 .border(2.dp, DarkGreen)
         )
+        sign.forEach {
+            Box(
+                Modifier
+                    .offset(x = tileSize*it.x, y = tileSize*it.y)
+                    .size(tileSize)
+                    .background(
+                        Color.Red, Shapes.small
+                    )
+            )
+        }
 
         Box(
             Modifier
