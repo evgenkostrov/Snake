@@ -19,9 +19,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
@@ -45,6 +47,15 @@ class MainActivity : ComponentActivity() {
         val game = Game(lifecycleScope)
 
         setContent {
+            Box(
+                modifier = with (Modifier){
+                    fillMaxSize()
+                        .paint(
+                            // Replace with your image id
+                            painterResource(id = R.drawable.snake),
+                            contentScale = ContentScale.FillBounds)
+
+                })
             Snake(game)
 
 
